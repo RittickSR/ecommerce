@@ -1,5 +1,47 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
+<?php
+	//$slug = $_GET['category'];
+    $slug = 'laptops';
+	$conn = $pdo->open();
+
+	try{
+		$stmt = $conn->prepare("SELECT * FROM category WHERE cat_slug = :slug");
+		$stmt->execute(['slug' => $slug]);
+		$cat = $stmt->fetch();
+		$catid = $cat['id'];
+	}
+	catch(PDOException $e){
+		echo "There is some problem in connection: " . $e->getMessage();
+	}
+
+	$pdo->close();
+
+?>
+
+<html>
+<head>
+<style>
+    .carousel-control > .fa {
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        z-index: 5;
+        display: inline-block;
+        margin-top: -20px;
+    }
+    .carousel-inner{
+        width:100%;
+        height:400px;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .sliderimg{
+        width: 1200px;
+        height: 500px;
+    }
+</style>
+</head>
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
@@ -11,7 +53,7 @@
 	      <!-- Main content -->
 	      <section class="content">
 	        <div class="row">
-	        	<div class="col-sm-9">
+	        	<div class="col-sm-20">
 	        		<?php
 	        			if(isset($_SESSION['error'])){
 	        				echo "
@@ -30,13 +72,13 @@
 		                </ol>
 		                <div class="carousel-inner">
 		                  <div class="item active">
-		                    <img src="images/tribes1.jpg" alt="First slide">
+                              <img class="sliderimg" src="images/tribes2.jpg" alt="Second slide">
 		                  </div>
 		                  <div class="item">
-		                    <img src="images/tribes2.jpg" alt="Second slide">
+		                      <img class="sliderimg" src="images/tribes3.jpg" alt="Third slide">
 		                  </div>
 		                  <div class="item">
-		                    <img src="images/tribes3.jpg" alt="Third slide">
+                              <img class="sliderimg" src="images/tribes1.jpg" alt="First slide">
 		                  </div>
 		                </div>
 		                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -46,14 +88,19 @@
 		                  <span class="fa fa-angle-right"></span>
 		                </a>
 		            </div>
-		            <h2>Monthly Top Sellers</h2>
+		            <h2>Popular Products</h2>
+                    
 		       		<?php
-		       			$month = date('m');
+		       			/*$month = date('m');
 		       			$conn = $pdo->open();
 
 		       			try{
 		       			 	$inc = 3;	
-						    $stmt = $conn->prepare("SELECT *, SUM(quantity) AS total_qty FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date) = '$month' GROUP BY details.product_id ORDER BY total_qty DESC LIMIT 6");
+						    $stmt = $conn->prepare("SELECT *, SUM(quantity) AS total_qty 
+                                                    FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id 
+                                                    WHERE MONTH(sales_date) = '$month' 
+                                                    GROUP BY details.product_id 
+                                                    ORDER BY total_qty DESC LIMIT 6");
 						    $stmt->execute();
 						    foreach ($stmt as $row) {
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -82,12 +129,151 @@
 						}
 
 						$pdo->close();
+                        */
+                        $conn = $pdo->open();
 
+		       			try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						}
+                        
+                    
+                        echo "<h2>Popular Products</h2>";
+                        try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 3");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						}    
+                    
+                    
+                    
+                        echo "<h2>Popular Products</h2>";
+                        try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 4");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						} 
+                    
+                    
+                        
+                        echo "<h2>Popular Products</h2>";
+                        try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 2");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						} 
+                    
+                    
+                    
+                    
+                    
+						$pdo->close();
 		       		?> 
 	        	</div>
-	        	<div class="col-sm-3">
-	        		<?php include 'includes/sidebar.php'; ?>
-	        	</div>
+	        	<!--<div class="col-sm-3">
+	        		<?php //include 'includes/sidebar.php'; ?>
+	        	</div>-->
 	        </div>
 	      </section>
 	     

@@ -9,6 +9,7 @@
 	    $stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname, products.id AS prodid FROM products LEFT JOIN category ON category.id=products.category_id WHERE slug = :slug");
 	    $stmt->execute(['slug' => $slug]);
 	    $product = $stmt->fetch();
+        $catid = $product['id'];
 		
 	}
 	catch(PDOException $e){
@@ -29,15 +30,7 @@
 ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-blue layout-top-nav">
-<script>
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
+    
 <div class="wrapper">
 
 	<?php include 'includes/navbar.php'; ?>
@@ -55,7 +48,7 @@
 	        		</div>
 		            <div class="row">
 		            	<div class="col-sm-6">
-		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%" class="zoom" data-magnify-src="images/large-<?php echo $product['photo']; ?>">
+		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%" class="zoom" >
 		            		<br><br>
 		            		<form class="form-inline" id="productForm">
 		            			<div class="form-group">
@@ -77,6 +70,11 @@
 		            	</div>
 		            	<div class="col-sm-6">
 		            		<h1 class="page-header"><?php echo $product['prodname']; ?></h1>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
 		            		<h3><b>&#36; <?php echo number_format($product['price'], 2); ?></b></h3>
 		            		<p><b>Category:</b> <a href="category.php?category=<?php echo $product['cat_slug']; ?>"><?php echo $product['catname']; ?></a></p>
 		            		<p><b>Description:</b></p>
@@ -90,11 +88,53 @@
 	        		<?php include 'includes/sidebar.php'; ?>
 	        	</div>
 	        </div>
+              
+    <div class="row">
+	   <div class="col-sm-20">     
+                    
+                    <?php 
+                        echo "<h2>Similar Products</h2>";
+                        try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						} 
+    
+    
+                        $pdo->close(); 
+                      ?>
+        </div>
+    </div>
 	      </section>
 	     
 	    </div>
 	  </div>
-  	<?php $pdo->close(); ?>
+  	
   	<?php include 'includes/footer.php'; ?>
 </div>
 
