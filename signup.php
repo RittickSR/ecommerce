@@ -13,6 +13,7 @@
 
 ?>
 <?php include 'includes/header.php'; ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body class="hold-transition register-page">
 <div class="register-box">
   	<?php
@@ -58,12 +59,33 @@
             <input type="password" class="form-control" name="repassword" placeholder="Retype password" required>
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
+          <div id="type">
+            <input id="seller" type="radio" name="usertype" value="Seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
+            <input id="customer" type="radio" name="usertype" value="customer" onclick="setVisible('tribe',false);" >Customer <br><br>
+          </div>
+         <div id="tribe" class="form-group has-feedback" style="width:100px;">
+          Tribe: <br><br>
+          <select name="Tribe" style="width:318%; height:20%;">
+            <option value="volvo">Ghonds</option>
+            <option value="saab">Bhils</option>
+            <option value="fiat">Santha</option>
+            <option value="audi">Khasi</option>
+          </select>
+          </div>
+          <script language="javascript" type="text/javascript">
+            function setVisible(id, visible) {
+             var o = document.getElementById(id); //get the element based on it's id
+              //if the element exists then set it's visiblity
+            if (typeof(o) != 'undefined') o.style.visibility = visible ? 'visible' : 'hidden';
+          }
+
+          </script>
           <?php
             if(!isset($_SESSION['captcha'])){
               echo '
-                <di class="form-group" style="width:100%;">
+                <div class="form-group" style="width:100%;">
                   <div class="g-recaptcha" data-sitekey="6LevO1IUAAAAAFX5PpmtEoCxwae-I8cCQrbhTfM6"></div>
-                </di>
+                </div>
               ';
             }
           ?>
