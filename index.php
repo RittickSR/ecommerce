@@ -88,7 +88,6 @@
 		                  <span class="fa fa-angle-right"></span>
 		                </a>
 		            </div>
-		            <h2>Popular Products</h2>
                     
 						<?php
                         $conn = $pdo->open();
@@ -96,7 +95,7 @@
                         echo "<h2>Popular Products</h2>";
                         try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 6");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 5");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -125,10 +124,12 @@
 							echo "There is some problem in connection: " . $e->getMessage();
 						}    
 
-
+                        
+                        
+                        echo "<h2>Recommended</h2>";
 		       			try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :5");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 6");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -162,10 +163,10 @@
                     
                     
                     
-                        echo "<h2>Popular Products</h2>";
+                        echo "<h2>Best Sellers</h2>";
                         try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 6");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 7");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -199,7 +200,7 @@
                         echo "<h2>Popular Products</h2>";
                         try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 7");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 8");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
