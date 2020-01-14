@@ -27,6 +27,35 @@
 		        			<tbody id="tbody">
 		        			</tbody>
 		        		</table>
+						<form action="cart_view.php" method="POST">
+						<div>Enter discount code
+						<input type="text" id="discountid" name="discount"></input>
+						<button  name="apply">Apply code </button>
+						<br>
+						</form>
+						<?php
+						
+						
+						
+						
+						if(isset($_POST['apply']))
+						{
+							$diskey=$_POST['discount'];
+							echo $diskey;
+							$conn = $pdo->open();
+							$stmt = $conn->prepare("SELECT discount_value FROM discount WHERE discount_id= :diskey");
+							$stmt->exceute(['diskey'=>$diskey]);
+							$row = $stmt->fetch();
+							echo $row['discount_value'];
+
+						}
+
+
+
+						?>
+						
+						</div>
+
 	        			</div>
 	        		</div>
 	        		<?php
