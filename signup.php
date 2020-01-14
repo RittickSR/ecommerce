@@ -65,7 +65,7 @@
           </div>
          <div id="tribe" class="form-group has-feedback" style="width:100px;">
           Tribe: <br><br>
-          <select name="Tribe" style="width:318%; height:20%;">
+          <select name="tribe" style="width:318%; height:20%;">
             <option value="ghonds">Ghonds</option>
             <option value="bhils">Bhils</option>
             <option value="santha">Santha</option>
