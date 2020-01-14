@@ -134,12 +134,70 @@
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  new google.translate.TranslateElement({pageLanguage: 'en',layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element',);
 }
 </script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<style type="text/css">
+        /* OVERRIDE GOOGLE TRANSLATE WIDGET CSS BEGIN */
+        div#google_translate_element div.goog-te-gadget-simple {
+            border:  solid white 1px;
+            
+            background-color: transparent;
+            /*background-color: #17548d;*/ /*#e3e3ff*/
+        }
 
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value:hover {
+            text-decoration: none;
+        }
+
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span {
+            color: white;
+        }
+
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span:hover {
+            color: white;
+        }
+        
+        .goog-te-gadget-icon {
+            display: none !important;
+            /*background: url("url for the icon") 0 0 no-repeat !important;*/
+        }
+
+        /* Remove the down arrow */
+        /* when dropdown open */
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span[style="color: rgb(213, 213, 213);"] {
+            display: none;
+        }
+        /* after clicked/touched */
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span[style="color: rgb(118, 118, 118);"] {
+            display: none;
+        }
+        /* on page load (not yet touched or clicked) */
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span[style="color: rgb(155, 155, 155);"] {
+            display: none;
+        }
+
+        /* Remove span with left border line | (next to the arrow) in Chrome & Firefox */
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span[style="border-left: 1px solid rgb(187, 187, 187);"] {
+            display: none;
+        }
+        /* Remove span with left border line | (next to the arrow) in Edge & IE11 */
+        div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span[style="border-left-color: rgb(187, 187, 187); border-left-width: 1px; border-left-style: solid;"] {
+            display: none;
+        }
+        /* HIDE the google translate toolbar */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        /* OVERRIDE GOOGLE TRANSLATE WIDGET CSS END */
+    </style>
+          
+          
           </li>
         </ul>
       </div>
