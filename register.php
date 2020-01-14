@@ -57,10 +57,18 @@
 				$code=substr(str_shuffle($set), 0, 12);
 
 				try{
+					if($usertype == 'customer'){
 					$stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname, activate_code, created_on) VALUES (:email, :password, :firstname, :lastname, :code, :now)");
 					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'code'=>$code, 'now'=>$now]);
 					$userid = $conn->lastInsertId();
-
+					}
+					echo "hey";
+					if($usertype == 'seller'){
+						$stmt = $conn->prepare("INSERT INTO seller (email, password, firstname, lastname, tribe, activate_code, created_on) VALUES (:email, :password, :firstname, :lastname, :tribe, :code, :now)");
+						$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'tribe'=>$tribe, 'code'=>$code, 'now'=>$now]);
+						$userid = $conn->lastInsertId();
+						}
+						
 					$message = "
 						<h2>Thank you for Registering.</h2>
 						<p>Your Account:</p>
