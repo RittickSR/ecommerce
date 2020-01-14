@@ -10,6 +10,7 @@ Class Database{
  	
 	public function open(){
  		try{
+			 
  			$this->conn = new PDO($this->server, $this->username, $this->password, $this->options);
  			return $this->conn;
  		}

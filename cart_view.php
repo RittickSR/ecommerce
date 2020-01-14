@@ -40,10 +40,21 @@
 						
 						if(isset($_POST['apply']))
 						{
+							//mysqli_select_db( 'ecomm' );
 							$diskey=$_POST['discount'];
 							echo $diskey;
+							//$sql = 'SELECT discount_value FROM discount WHERE discount_id= :diskey';
+							//$result = mysqli_query($mysqli, $sql);
+							//if (mysqli_num_rows($result) > 0) {
+            //while($row = mysqli_fetch_assoc($result)) {
+              // echo "Name: " . $row["discount_value"]. "<br>";
+            //}
+         //} else {
+           // echo "0 results";
+         //}
+ 
 							$conn = $pdo->open();
-							$stmt = $conn->prepare("SELECT discount_value FROM discount WHERE discount_id= :diskey");
+							$stmt = $conn->prepare("SELECT discount_value FROM discount WHERE discount_id = :diskey");
 							$stmt->exceute(['diskey'=>$diskey]);
 							$row = $stmt->fetch();
 							echo $row['discount_value'];
