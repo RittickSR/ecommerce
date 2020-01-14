@@ -124,10 +124,12 @@
           </div>
         </div>-->
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <!--<div class="col-lg-3 col-xs-6">-->
+ 
           <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
+          <!--<div class="small-box bg-red">
+            <div class="inner">-->
+ 
               <?php
                 $id= $admin['id'];
                 $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
@@ -139,10 +141,10 @@
                   $total += $subtotal;
                 }
 
-                echo "<h3>&#x20B9; ".number_format_short($total, 2)."</h3>";
+              //  echo "<h3>&#x20B9; ".number_format_short($total, 2)."</h3>";
                 
               ?>
-
+<!--
               <p>Sales Today</p>
             </div>
             <div class="icon">
@@ -150,9 +152,9 @@
             </div>
             <a href="borrow.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+        </div>-->
         <!-- ./col -->
-      </div>
+      <!--</div>-->
       <!-- /.row -->
       <div class="row">
         <div class="col-xs-12">
