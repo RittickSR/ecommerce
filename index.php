@@ -87,8 +87,8 @@
 		                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
 		                  <span class="fa fa-angle-right"></span>
 		                </a>
-		            </div>
-                    
+		            </div> 
+                        
 						<?php
                         $conn = $pdo->open();
                             
@@ -244,7 +244,92 @@
 	     
 	    </div>
 	  </div>
+    
+    <button class="open-button" onclick="openForm()">Chat with us!</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+     <iframe
+        allow="microphone;"
+        width="280"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/a12f53d8-b9c2-4e6b-a48c-5ce1ed3b7c5f">
+    </iframe>  
+    
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+    
+    
+    
+ <style>
+    .open-button {  
+  background-color: #191970 !important;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 22px;
+  width: 280px;
+  /*border: 3px solid #f1f1f1;
+    z-index: 9;*/
   
+}
+
+/* Add styles to the form container */
+.form-container {
+   
+   /* right: auto;
+  background-color: white;
+      max-width: 300px;
+            padding: 10px;*/
+}
+     
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 50px !important;
+  border: none;
+  cursor: pointer;
+  bottom: 20px;
+  right: 20px;
+  width: 280px;
+  margin-bottom:10px;
+ /* opacity: 0.8;*/
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>   
+    
+
   	<?php include 'includes/footer.php'; ?>
 </div>
 

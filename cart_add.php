@@ -7,7 +7,18 @@
 
 	$id = $_POST['id'];
 	$quantity = $_POST['quantity'];
-
+    
+               
+    /*$stmt = $conn->prepare("SELECT quantity FROM details WHERE product_id = :id");
+    $stmt->execute();
+    $row = $stmt->fetch();
+    echo $row['quantity'];
+    
+    if($row['quantity'] < $quantity)
+    {
+        echo "Out of stock";    
+    }*/
+    
 	if(isset($_SESSION['user'])){
 		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM cart WHERE user_id=:user_id AND product_id=:product_id");
 		$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$id]);
