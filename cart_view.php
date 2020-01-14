@@ -32,15 +32,14 @@
 						<input type="text" id="discountid" name="discount"></input>
 						
 						<button  name="apply">Apply code</button>
-						 Discount given:
-						<input type="text" id="discgiven" name="discfinal"></input>
+						 
 						<br>
 						</form>
 						
 						<?php
 						
 						
-						
+						//echo "Discount given:";
 						
 						if(isset($_POST['apply']))
 						{
@@ -55,16 +54,17 @@
             //}
          //} else {
            // echo "0 results";
-         //}
- 
+         //}				
+		 					$disc='0';
 							$conn = $pdo->open();
 							$stmt = $conn->prepare("SELECT discount_value FROM discount WHERE discount_id = $diskey");
 							$stmt->execute();
 							$row = $stmt->fetch();
 							$disc= $row['discount_value'];
 							$pdo->close();
-
+							echo "<h5>Discount given:" .$disc. "%</h5>" ;
 						}
+						
 
 
 
