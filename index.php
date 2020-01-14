@@ -2,7 +2,7 @@
 <?php include 'includes/header.php'; ?>
 <?php
 	//$slug = $_GET['category'];
-    $slug = 'laptops';
+    $slug = 'home-decor';
 	$conn = $pdo->open();
 
 	try{
@@ -90,6 +90,7 @@
 		            </div>
 		            <h2>Popular Products</h2>
                     
+		            <!--<h2>Monthly Top Sellers</h2>
 		       		<?php
 		       			/*$month = date('m');
 		       			$conn = $pdo->open();
@@ -131,6 +132,39 @@
 						$pdo->close();
                         */
                         $conn = $pdo->open();
+                            
+                        echo "<h2>Popular Products</h2>";
+                        try{
+		       			 	$inc = 4;	
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 5");
+						    $stmt->execute(['catid' => $catid]);
+						    foreach ($stmt as $row){
+						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
+						    	$inc = ($inc == 4) ? 1 : $inc + 1;
+	       						if($inc == 1) echo "<div class='row'>";
+	       						echo "
+	       							<div class='col-sm-3'>
+	       								<div class='box box-solid'>
+		       								<div class='box-body prod-body'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+		       								</div>
+		       								<div class='box-footer'>
+		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       								</div>
+	       								</div>
+	       							</div>
+	       						";
+	       						if($inc == 4) echo "</div>";
+                                if($inc == 4) break;
+						    }
+						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
+							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
+						}
+						catch(PDOException $e){
+							echo "There is some problem in connection: " . $e->getMessage();
+						}    
+
 
 		       			try{
 		       			 	$inc = 4;	
@@ -164,44 +198,14 @@
 						}
                         
                     
-                        echo "<h2>Popular Products</h2>";
-                        try{
-		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 3");
-						    $stmt->execute(['catid' => $catid]);
-						    foreach ($stmt as $row){
-						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
-						    	$inc = ($inc == 4) ? 1 : $inc + 1;
-	       						if($inc == 1) echo "<div class='row'>";
-	       						echo "
-	       							<div class='col-sm-3'>
-	       								<div class='box box-solid'>
-		       								<div class='box-body prod-body'>
-		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
-		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
-		       								</div>
-		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
-		       								</div>
-	       								</div>
-	       							</div>
-	       						";
-	       						if($inc == 4) echo "</div>";
-                                if($inc == 4) break;
-						    }
-						    if($inc == 1) echo "<div class='col-sm-3'></div><div class='col-sm-3'></div></div>"; 
-							if($inc == 2) echo "<div class='col-sm-3'></div></div>";
-						}
-						catch(PDOException $e){
-							echo "There is some problem in connection: " . $e->getMessage();
-						}    
+                        
                     
                     
                     
                         echo "<h2>Popular Products</h2>";
                         try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 4");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 6");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -235,7 +239,7 @@
                         echo "<h2>Popular Products</h2>";
                         try{
 		       			 	$inc = 4;	
-						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 2");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 7");
 						    $stmt->execute(['catid' => $catid]);
 						    foreach ($stmt as $row){
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
@@ -270,6 +274,8 @@
                     
 						$pdo->close();
 		       		?> 
+=======
+		       		?> -->
 	        	</div>
 	        	<!--<div class="col-sm-3">
 	        		<?php //include 'includes/sidebar.php'; ?>
