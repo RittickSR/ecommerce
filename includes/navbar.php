@@ -134,7 +134,7 @@
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en',layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element',);
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'bn,en,gu,hi,kn,ta,ur',layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element',);
 }
 </script>
 
