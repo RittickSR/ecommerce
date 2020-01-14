@@ -30,9 +30,13 @@
 						<form action="cart_view.php" method="POST">
 						<div>Enter discount code
 						<input type="text" id="discountid" name="discount"></input>
-						<button  name="apply">Apply code </button>
+						
+						<button  name="apply">Apply code</button>
+						 Discount given:
+						<input type="text" id="discgiven" name="discfinal"></input>
 						<br>
 						</form>
+						
 						<?php
 						
 						
