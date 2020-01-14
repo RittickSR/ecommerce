@@ -66,10 +66,10 @@
          <div id="tribe" class="form-group has-feedback" style="width:100px;">
           Tribe: <br><br>
           <select name="Tribe" style="width:318%; height:20%;">
-            <option value="volvo">Ghonds</option>
-            <option value="saab">Bhils</option>
-            <option value="fiat">Santha</option>
-            <option value="audi">Khasi</option>
+            <option value="ghonds">Ghonds</option>
+            <option value="bhils">Bhils</option>
+            <option value="santha">Santha</option>
+            <option value="khasi">Khasi</option>
           </select>
           </div>
           <script language="javascript" type="text/javascript">
