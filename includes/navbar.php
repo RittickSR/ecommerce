@@ -49,7 +49,7 @@
                   $stmt->execute();
                   foreach($stmt as $row){
                     echo "
-                      <li><a href='category.php?category=".$row['cat_slug']."'>".$row['name']."</a></li>
+                      <li><a href='category.php?category=".$row['name']."'>".$row['name']."</a></li>
                     ";                  
                   }
                 }
