@@ -109,7 +109,7 @@
 		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       									<b>&#x20B9; ".number_format($row['price'], 2)."</b>
 		       								</div>
 	       								</div>
 	       							</div>
@@ -143,7 +143,7 @@
 		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       									<b>&#x20B9; ".number_format($row['price'], 2)."</b>
 		       								</div>
 	       								</div>
 	       							</div>
@@ -180,7 +180,7 @@
 		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       									<b>&#x20B9; ".number_format($row['price'], 2)."</b>
 		       								</div>
 	       								</div>
 	       							</div>
@@ -197,7 +197,7 @@
                     
                     
                         
-                        echo "<h2>Popular Products</h2>";
+                        echo "<h2>Similar Products</h2>";
                         try{
 		       			 	$inc = 4;	
 						    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = 8");
@@ -214,7 +214,7 @@
 		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'], 2)."</b>
+		       									<b>&#x20B9; ".number_format($row['price'], 2)."</b>
 		       								</div>
 	       								</div>
 	       							</div>
