@@ -30,7 +30,17 @@
 ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-blue layout-top-nav">
+
     
+<!--<script>
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>-->
 <div class="wrapper">
 
 	<?php include 'includes/navbar.php'; ?>
@@ -75,7 +85,8 @@
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
-		            		<h3><b>&#36; <?php echo number_format($product['price'], 2); ?></b></h3>
+		            		<h3><b>&#x20B9; <?php echo number_format($product['price'], 2); ?></b></h3>
+                        
 		            		<p><b>Category:</b> <a href="category.php?category=<?php echo $product['cat_slug']; ?>"><?php echo $product['catname']; ?></a></p>
 		            		<p><b>Description:</b></p>
 		            		<p><?php echo $product['description']; ?></p>

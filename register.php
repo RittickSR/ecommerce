@@ -10,6 +10,8 @@
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$repassword = $_POST['repassword'];
+		$usertype=$_POST['usertype'];
+		$tribe=$_POST['tribe'];
 
 		$_SESSION['firstname'] = $firstname;
 		$_SESSION['lastname'] = $lastname;

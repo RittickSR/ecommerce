@@ -60,16 +60,16 @@
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div id="type">
-            <input id="seller" type="radio" name="usertype" value="Seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
+            <input id="seller" type="radio" name="usertype" value="seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
             <input id="customer" type="radio" name="usertype" value="customer" onclick="setVisible('tribe',false);" >Customer <br><br>
           </div>
          <div id="tribe" class="form-group has-feedback" style="width:100px;">
           Tribe: <br><br>
           <select name="Tribe" style="width:318%; height:20%;">
-            <option value="volvo">Ghonds</option>
-            <option value="saab">Bhils</option>
-            <option value="fiat">Santha</option>
-            <option value="audi">Khasi</option>
+            <option value="ghonds">Ghonds</option>
+            <option value="bhils">Bhils</option>
+            <option value="santha">Santha</option>
+            <option value="khasi">Khasi</option>
           </select>
           </div>
           <script language="javascript" type="text/javascript">
