@@ -12,6 +12,7 @@
 		$repassword = $_POST['repassword'];
 		$usertype=$_POST['usertype'];
 		$tribe=$_POST['tribe'];
+		$usertype=$_POST['usertype'];
 
 		$_SESSION['firstname'] = $firstname;
 		$_SESSION['lastname'] = $lastname;
