@@ -60,7 +60,7 @@
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div id="type">
-            <input id="seller" type="radio" name="usertype" value="Seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
+            <input id="seller" type="radio" name="usertype" value="seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
             <input id="customer" type="radio" name="usertype" value="customer" onclick="setVisible('tribe',false);" >Customer <br><br>
           </div>
          <div id="tribe" class="form-group has-feedback" style="width:100px;">
