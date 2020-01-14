@@ -62,7 +62,8 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id");
+                $id= $admin['id'];
+                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id where seller_id=$id");
                 $stmt->execute();
 
                 $total = 0;
@@ -87,9 +88,13 @@
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products");
+                //$id=$_POST['id'];
+                $id= $admin['id'];
+                //echo $id;
+                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products where seller_id=$id");
                 $stmt->execute();
                 $prow =  $stmt->fetch();
+
 
                 echo "<h3>".$prow['numrows']."</h3>";
               ?>
@@ -108,13 +113,7 @@
           <!-- small box -->
           <!--<div class="small-box bg-yellow">
             <div class="inner">-->
-              <?php
-                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users");
-                $stmt->execute();
-                $urow =  $stmt->fetch();
-
-               // echo "<h3>".$urow['numrows']."</h3>";
-              ?>
+              
              
               <!--<p>Number of Users</p>
             </div>
@@ -130,6 +129,7 @@
           <div class="small-box bg-red">
             <div class="inner">
               <?php
+                $id= $admin['id'];
                 $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
                 $stmt->execute(['sales_date'=>$today]);
 

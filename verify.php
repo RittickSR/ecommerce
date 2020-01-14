@@ -9,7 +9,7 @@
 
 		try{
 
-			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users WHERE email = :email");
+			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM seller WHERE email = :email");
 			$stmt->execute(['email'=>$email]);
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
