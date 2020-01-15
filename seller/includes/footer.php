@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>All rights reserved</b>
+      <b>SIH 2020</b>
     </div>
-    <strong>Copyright &copy; 2018 Brought To You By<a href="https://code-projects.org/">Code-Projects</a></strong>
+    <strong> By Coders__United</a></strong>
 </footer>
