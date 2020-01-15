@@ -56,6 +56,10 @@
 							echo "<h5>Discount given: Rs." .$disc. "</h5>" ;
                             $_SESSION['disc']=$disc;
 						}
+                            else
+                            {
+                                $_SESSION['disc']=0;
+                            }
 						
 
 
