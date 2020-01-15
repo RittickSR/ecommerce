@@ -1,8 +1,8 @@
 <footer class="main-footer">
     <div class="container">
       <div class="pull-right hidden-xs">
-        <b>All rights reserved</b>
+        <b>Coders__United</b>
       </div>
-      <strong>Project By Tribal India</strong>
+      <strong>SIH 2020</strong>
     </div>
 </footer>
