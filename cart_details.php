@@ -57,6 +57,9 @@
 					<td colspan='5' align='right'><b>Total</b></td>
 					<td><b>&#x20B9; ".number_format($total, 2)."</b></td>
 				<tr>
+				<tr>
+				<td colspan='5' align='right'><b>Total</b></td>
+				</tr>
 			";
 
 		}

@@ -29,6 +29,11 @@
     	<p class="login-box-msg">Sign in to start your session</p>
 
     	<form action="verify.php" method="POST">
+      <div id="type">
+            <label>What kind of user are you?</label>
+            <input id="seller" type="radio" name="usertype" value="seller" onclick="setVisible('tribe',true);">Seller &nbsp&nbsp&nbsp&nbsp
+            <input id="customer" type="radio" name="usertype" value="customer" onclick="setVisible('tribe',false);" >Customer <br><br>
+          </div>
       		<div class="form-group has-feedback">
         		<input type="email" class="form-control" name="email" placeholder="Email" required>
         		<span class="glyphicon glyphicon-envelope form-control-feedback"></span>

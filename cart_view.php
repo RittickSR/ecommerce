@@ -45,16 +45,7 @@
 						{
 							//mysqli_select_db( 'ecomm' );
 							$diskey=$_POST['discount'];
-							//echo $diskey;
-							//$sql = 'SELECT discount_value FROM discount WHERE discount_id= :diskey';
-							//$result = mysqli_query($mysqli, $sql);
-							//if (mysqli_num_rows($result) > 0) {
-            //while($row = mysqli_fetch_assoc($result)) {
-              // echo "Name: " . $row["discount_value"]. "<br>";
-            //}
-         //} else {
-           // echo "0 results";
-         //}				
+							
 		 					$disc='0';
 							$conn = $pdo->open();
 							$stmt = $conn->prepare("SELECT discount_value FROM discount WHERE discount_id = $diskey");
@@ -199,6 +190,7 @@ function getTotal(){
 		}
 	});
 }
+
 </script>
 <!-- Paypal Express -->
 <script>

@@ -1,15 +1,24 @@
 <?php
+	
 	include 'includes/session.php';
+	
 	$conn = $pdo->open();
 
 	if(isset($_POST['login'])){
 		
 		$email = $_POST['email'];
 		$password = $_POST['password'];
+		$usertype=$_POST['usertype'];
 
+		if($usertype=='customer' || 'seller')
+		{
 		try{
-
+			if($usertype == 'customer')
 			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users WHERE email = :email");
+
+			if($usertype == 'seller')
+			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM seller WHERE email = :email");
+
 			$stmt->execute(['email'=>$email]);
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
@@ -37,6 +46,7 @@
 		catch(PDOException $e){
 			echo "There is some problem in connection: " . $e->getMessage();
 		}
+	}
 
 	}
 	else{
