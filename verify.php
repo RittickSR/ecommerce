@@ -1,5 +1,7 @@
 <?php
+	
 	include 'includes/session.php';
+	
 	$conn = $pdo->open();
 
 	if(isset($_POST['login'])){
@@ -8,13 +10,14 @@
 		$password = $_POST['password'];
 		$usertype=$_POST['usertype'];
 
-		if($usertype=='customer')
+		if($usertype=='customer' || 'seller')
 		{
 		try{
-			
-			
+			if($usertype == 'customer')
 			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users WHERE email = :email");
-			
+
+			if($usertype == 'seller')
+			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM seller WHERE email = :email");
 
 			$stmt->execute(['email'=>$email]);
 			$row = $stmt->fetch();
@@ -43,43 +46,7 @@
 		catch(PDOException $e){
 			echo "There is some problem in connection: " . $e->getMessage();
 		}
-		}
-		if($usertype=='seller')
-		{
-		try{
-			
-			
-			$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM seller WHERE email = :email");
-			
-
-			$stmt->execute(['email'=>$email]);
-			$row = $stmt->fetch();
-			if($row['numrows'] > 0){
-				if($row['status']){
-					if(password_verify($password, $row['password'])){
-						if($row['type']){
-							$_SESSION['admin'] = $row['id'];
-						}
-						else{
-							$_SESSION['seller'] = $row['id'];
-						}
-					}
-					else{
-						$_SESSION['error'] = 'Incorrect Password';
-					}
-				}
-				else{
-					$_SESSION['error'] = 'Account not activated.';
-				}
-			}
-			else{
-				$_SESSION['error'] = 'Email not found';
-			}
-		}
-		catch(PDOException $e){
-			echo "There is some problem in connection: " . $e->getMessage();
-		}
-		}
+	}
 
 	}
 	else{

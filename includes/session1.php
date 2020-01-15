@@ -1,18 +1,18 @@
 <?php
-	include 'includes/conn.php';
+	
 	session_start();
 
 	if(isset($_SESSION['admin'])){
-		header('location: seller/home.php');
+		header('location: admin/home.php');
 	}
 	
 
-	if(isset($_SESSION['user'])){
+	if(isset($_SESSION['seller'])){
 		$conn = $pdo->open();
 
 		try{
 			$stmt = $conn->prepare("SELECT * FROM seller WHERE id=:id");
-			$stmt->execute(['id'=>$_SESSION['user']]);
+			$stmt->execute(['id'=>$_SESSION['seller']]);
 			$user = $stmt->fetch();
 		}
 		catch(PDOException $e){
@@ -21,6 +21,5 @@
 
 		$pdo->close();
 	}
-
 
 ?>
