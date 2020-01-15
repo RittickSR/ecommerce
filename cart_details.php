@@ -30,6 +30,7 @@
 				$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
 				$subtotal = $row['price']*$row['quantity'];
 				$total += $subtotal;
+                $total = $total;
 				$output .= "
 					<tr>
 						<td><button type='button' data-id='".$row['cartid']."' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
@@ -50,6 +51,7 @@
 					</tr>
 				";
 			}
+            $total=$total-$_SESSION['disc'];
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>

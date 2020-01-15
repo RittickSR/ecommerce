@@ -62,7 +62,8 @@
 							$row = $stmt->fetch();
 							$disc= $row['discount_value'];
 							$pdo->close();
-							echo "<h5>Discount given:" .$disc. "%</h5>" ;
+							echo "<h5>Discount given: Rs." .$disc. "</h5>" ;
+                            $_SESSION['disc']=$disc;
 						}
 						
 
