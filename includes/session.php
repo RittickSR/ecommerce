@@ -3,8 +3,9 @@
 	session_start();
 
 	if(isset($_SESSION['admin'])){
-		header('location: seller/home.php');
+		header('location: admin/home.php');
 	}
+	
 
 	if(isset($_SESSION['user'])){
 		$conn = $pdo->open();
@@ -20,4 +21,5 @@
 
 		$pdo->close();
 	}
+
 ?>
